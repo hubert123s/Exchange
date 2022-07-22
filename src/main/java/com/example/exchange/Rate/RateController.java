@@ -4,9 +4,10 @@ import com.example.exchange.Currency.CurrencyName;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/currency")
 public class RateController {
 
     private  final RateService rateService;
@@ -23,6 +24,13 @@ public class RateController {
     {
 
         return rateService.calculate(amount,fromCurrency,toCurrency);
+    }
+    @GetMapping("/highestvalue")
+    @ResponseBody
+    List<RatesDto> highestValue()
+    {
+
+        return rateService.sortCurrencyFromHighestToLowestValue();
     }
 
 
